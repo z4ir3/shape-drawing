@@ -37,9 +37,9 @@ def main():
         unsafe_allow_html = True
     )
 
-    # with st.sidebar:
-    #     # Sidebar title
-    #     st.sidebar.title("")
+    with st.sidebar:
+        # Sidebar title
+        st.sidebar.title("")
 
     #     PageSelected = option_menu(
     #         menu_title = "Option Playgrounds",
@@ -77,10 +77,7 @@ def main():
     #     """
     #     st.markdown(ss, unsafe_allow_html=True)
 
-    # if PageSelected == "Option Pricing":
-    #     _ = dbpage_pricing()
-    # else:
-    #     _ = dbpage_strategies()
+
     _ = iplotest()
 
 
