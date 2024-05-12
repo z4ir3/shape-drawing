@@ -58,6 +58,10 @@ def main():
                 _ = input_rectangle()
 
 
+    # Plot shape
+    _ = iplotest()
+
+
 
     #     PageSelected = option_menu(
     #         menu_title = "Option Playgrounds",
@@ -96,7 +100,6 @@ def main():
     #     st.markdown(ss, unsafe_allow_html=True)
 
 
-    _ = iplotest()
 
 
     # Hiding "Made with Streamlit message"

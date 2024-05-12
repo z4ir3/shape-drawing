@@ -45,9 +45,9 @@ def input_rectangle():
         with st.container():
             col1, col2 = st.columns([1,1], gap="small")
             with col1:
-                # Lenght of the Rectangle
-                ll = st.number_input(
-                    label = "Lenght",
+                # Width of the Rectangle
+                width = st.number_input(
+                    label = "Width",
                     min_value = 0.1,
                     max_value = None,
                     value = None,
@@ -55,11 +55,11 @@ def input_rectangle():
                     format = "%f",
                     placeholder = "10",
                     # # key = None
-                    # # on_change=
+                    # # on_change
                 )
             with col2:
                 # Height of the Rectangle
-                hh = st.number_input(
+                height = st.number_input(
                     label = "Height",
                     min_value = 0.1,
                     max_value = None,
@@ -71,13 +71,23 @@ def input_rectangle():
                     # # on_change=
                 )
 
-    center = Point(cx,cy)
-    # st.write(center)
-    # st.write(center.x, center.y)
+    try:
+        # center = Point(cx,cy)
+        # # st.write(center)
+        # # st.write(center.x, center.y)
+
+        # Rect = Rectangle(center, ll, hh)
+        # Rect.init_vertices()
+        # # st.write(Rect.v1, Rect.v2) #, Rect.vy)
+
+        Rect = Rectangle(Point(cx,cy), width, height)
+        Rect.init_vertices()
+        # Rect.init_vectors()
+
+        st.write(Rect.v1)
+        st.write(Rect.vec1, Rect.vec2, Rect.vec3, Rect.vec4)
 
 
-    # Rect = Rectangle(cx, cy, ll, hh)
-    Rect = Rectangle(center, ll, hh)
-    # st.write(Rect)
-    # st.write(ll,hh)
-
+        return Rect
+    except:
+        None
