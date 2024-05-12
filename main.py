@@ -6,9 +6,12 @@ import streamlit as st
 # Importing absolute path for deployment as streamlit app
 # import sys
 # sys.path.insert(1,"/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/streamlit_option_menu")
-from streamlit_option_menu import option_menu 
+from streamlit_option_menu import option_menu
 
 from src.test import iplotest
+
+from src.input_shapes import input_rectangle
+
 
 
 def main():
@@ -30,7 +33,7 @@ def main():
     st.write('''
         <style>
             div.block-container {
-                padding-top: 0rem; 
+                padding-top: 0rem;
             }
         </style>
         ''',
@@ -40,6 +43,21 @@ def main():
     with st.sidebar:
         # Sidebar title
         st.sidebar.title("")
+
+
+        shape = st.selectbox(
+            label = "Select the shape",
+            options = ["Rectangle","Circle"],
+            index = 0,
+            placeholder = "",
+            # key = ""
+        )
+
+        match shape:
+            case "Rectangle":
+                _ = input_rectangle()
+
+
 
     #     PageSelected = option_menu(
     #         menu_title = "Option Playgrounds",
@@ -59,7 +77,7 @@ def main():
     #         # orientation = "horizontal"
     #         # styles={
     #         #     "container": {"padding": "0!important", "background-color": "#fafafa"},
-    #         #     "icon": {"color": "orange", "font-size": "25px"}, 
+    #         #     "icon": {"color": "orange", "font-size": "25px"},
     #         #     "nav-link": {"font-size": "25px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
     #         #     "nav-link-selected": {"background-color": "green"},
     #         # }

@@ -3,14 +3,17 @@ Copyright (c) leonardo-rocchi:z4ir3
 """
 
 class Rectangle:
-    def __init__(self, c1: float, c2: float, lenght: float, height: float):
-        self.c1 = c1
-        self.c2 = c2
-        self.lenght = Rectangle._valid_ll(lenght)
-        self.height = Rectangle._valid_hh(height)
+    """
+    Rectangle
+    """
+    def __init__(self, center, lenght: float, height: float):
+        self.center = center
+        self.lenght = Rectangle._valid_lh(lenght)
+        self.height = Rectangle._valid_lh(height)
+
 
     @staticmethod
-    def _valid_ll(lh: float) -> float:
+    def _valid_lh(lh: float) -> float:
         if lh <= 0:
             raise ValueError("Cannot insert non-negative lenght/height")
         else:
