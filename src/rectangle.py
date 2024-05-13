@@ -2,18 +2,16 @@
 Copyright (c) leonardo-rocchi:z4ir3
 """
 from src.point import Point
-from src.vector import VectorFromCenter
+from src.vector import Vector
 
 class Rectangle:
     """
     Rectangle
     """
-    def __init__(self, center, width: float, height: float):
+    def __init__(self, center: Point, width: float, height: float):
         self.center = center
         self.width = Rectangle._valid_lh(width)
         self.height = Rectangle._valid_lh(height)
-        # self.v1 = Rectangle.vertex1(self.center, self.width, self.height)
-        # self.v1 = self._vertex1(self)
 
     @staticmethod
     def _valid_lh(lh: float) -> float:
@@ -30,33 +28,25 @@ class Rectangle:
         vx = self.center.x + 0.5 * self.width
         vy = self.center.y - 0.5 * self.height
         self.v1 = Point(vx, vy)
-        self.vec1 = VectorFromCenter(self.center, self.v1)
+        self.vec1 = Vector(self.center, self.v1)
 
         # Second vertex (top right) and corr. vector from the center
         vx = self.center.x + 0.5 * self.width
         vy = self.center.y + 0.5 * self.height
         self.v2 = Point(vx, vy)
-        self.vec2 = VectorFromCenter(self.center, self.v2)
+        self.vec2 = Vector(self.center, self.v2)
 
         # Third vertex (top left) and corr. vector from the center
         vx = self.center.x - 0.5 * self.width
         vy = self.center.y + 0.5 * self.height
         self.v3 = Point(vx, vy)
-        self.vec3 = VectorFromCenter(self.center, self.v3)
+        self.vec3 = Vector(self.center, self.v3)
 
         # Fourth vertex (bottom left) and corr. vector from the center
         vx = self.center.x - 0.5 * self.width
         vy = self.center.y - 0.5 * self.height
         self.v4 = Point(vx, vy)
-        self.vec4 = VectorFromCenter(self.center, self.v4)
-
-
-
-
-
-
-
-
+        self.vec4 = Vector(self.center, self.v4)
 
     def area(self) -> float:
         """
