@@ -7,7 +7,7 @@ from src.point import Point
 from src.rectangle import Rectangle
 
 
-def input_rectangle():
+def input_rectangle() -> Rectangle | None:
     """
     """
     # Rectangle input data (center's coordinates, lenght, and height)
@@ -72,22 +72,8 @@ def input_rectangle():
                 )
 
     try:
-        # center = Point(cx,cy)
-        # # st.write(center)
-        # # st.write(center.x, center.y)
-
-        # Rect = Rectangle(center, ll, hh)
-        # Rect.init_vertices()
-        # # st.write(Rect.v1, Rect.v2) #, Rect.vy)
-
         Rect = Rectangle(Point(cx,cy), width, height)
-        Rect.init_vertices()
-        # Rect.init_vectors()
-
-        st.write(Rect.v1)
-        st.write(Rect.vec1, Rect.vec2, Rect.vec3, Rect.vec4)
-
-
+        Rect.set_vertices()
         return Rect
     except:
-        None
+        return None

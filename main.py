@@ -8,7 +8,9 @@ import streamlit as st
 # sys.path.insert(1,"/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/streamlit_option_menu")
 from streamlit_option_menu import option_menu
 
-from src.test import iplotest
+
+from src.movements import rotation
+from src.plots import iplot
 
 from src.input_shapes import input_rectangle
 
@@ -40,6 +42,9 @@ def main():
         unsafe_allow_html = True
     )
 
+    # Page title
+    st.title("Shape Playground")
+
     with st.sidebar:
         # Sidebar title
         st.sidebar.title("")
@@ -55,11 +60,48 @@ def main():
 
         match shape:
             case "Rectangle":
-                _ = input_rectangle()
+                Rect = input_rectangle()
+                if Rect is not None:
+                    st.write(Rect.v1)
+                    st.write(Rect.vec1) #, Rect.vec2, Rect.vec3, Rect.vec4)
+
+
+    col1, col2, col3 = st.columns([1,1,1], gap="small")
+    with col1:
+        st.metric(label = "", value = "Sliding")
+    with col2:
+        st.metric(label = "", value = "Rotation")
+        with st.container():
+            # Angle rotation of the Rectangle
+            theta_deg = st.slider(
+                label = "Angle (degrees)",
+                min_value = -360,
+                max_value = +360,
+                value = 0,
+                step = 5,
+                format = "%d",
+                # keyk = "slider-exp",
+                # help = None,
+                # on_change = get_T(TType, minvt, maxvt)
+            )
+
+
+        try:
+            Rect = rotation(Rect, theta_deg)
+
+            # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+            # st.write(Rect.vec1)
+        except:
+            pass
+
+
+
+    with col3:
+        st.metric(label = "", value = "Stretching")
 
 
     # Plot shape
-    _ = iplotest()
+    _ = iplot(Rect)
 
 
 
