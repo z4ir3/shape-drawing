@@ -1,6 +1,7 @@
 """
 Copyright (c) leonardo-rocchi:z4ir3
 """
+from src.utils import DotDict
 from src.point import Point
 from src.vector import Vector
 
