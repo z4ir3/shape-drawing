@@ -84,25 +84,87 @@ def main():
                 # help = None,
                 # on_change = get_T(TType, minvt, maxvt)
             )
-
-
-        try:
-            Rect = rotation(Rect, theta_deg)
-
-            # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
-            # st.write(Rect.vec1)
-        except:
-            pass
-
-
+            try:
+                Rect = rotation(Rect, theta_deg)
+                # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+                # st.write(Rect.vec1)
+            except:
+                pass
 
     with col3:
         st.metric(label = "", value = "Stretching")
+        # Stretching scaling factor
+        scaling_factor = st.slider(
+            label = "Scaling Factor",
+            min_value = 0.1,
+            max_value = 5.0,
+            value = 1.0,
+            step = 0.1,
+            format = "%f"
+            # keyk = "slider-exp",
+            # help = None,
+            # on_change = get_T(TType, minvt, maxvt)
+        )
+        # try:
+        #     Rect = stretch(Rect, scaling_factor)
+        #     # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+        #     # st.write(Rect.vec1)
+        # except:
+        #     pass
+
+
+    if shape == "Rectangle":
+        with st.sidebar:
+            # Show Rectangle info
+            info = Rect.objectinfo
+
+            st.header(f"{info.name}'s vertices")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"1st: {info.v1}") #({info['v1x']}, {info['v']}))
+                with col2:
+                    st.write(f"2nd: {info.v2}")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"3rd: {info.v3}")
+                with col2:
+                    st.write(f"4th: {info.v4}")
+
+            st.header(f"{info.name}'s center-to-vertex vectors")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"1st: {info.vec1}")
+                with col2:
+                    st.write(f"2nd: {info.vec2}")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"3rd: {info.vec3}")
+                with col2:
+                    st.write(f"4th: {info.vec4}")
+
+            st.header(f"{info.name}'s other data")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"Area: {info.area}")
+                with col2:
+                    st.write(f"Perimeter: {info.perimeter}")
+            with st.container():
+                col1, col2 = st.columns([1,1], gap="small")
+                with col1:
+                    st.write(f"Diagonal: {info.diagonal}")
+
 
 
     # Plot shape
-    _ = iplot(Rect)
-
+    # try:
+    iplot(Rect)
+    # except:
+    #     pass
 
 
     #     PageSelected = option_menu(
