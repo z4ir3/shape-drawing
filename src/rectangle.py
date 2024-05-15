@@ -64,4 +64,24 @@ class Rectangle:
         """
         width of the diagonal of the Rectangle
         """
-        return (self.width**2 + self.height**2)**(0.5)
+        return round((self.width**2 + self.height**2)**(0.5), 2)
+
+    @property
+    def objectinfo(self) -> dict:
+        info = {
+            "name": "Rectangle",
+            "width": self.width,
+            "height": self.height,
+            "area": self.area(),
+            "perimeter": self.perimeter(),
+            "diagonal": self.diagonal(),
+            "v1": (self.v1.x, self.v1.y),
+            "v2": (self.v2.x, self.v2.y),
+            "v3": (self.v3.x, self.v3.y),
+            "v4": (self.v4.x, self.v4.y),
+            "vec1": (self.vec1.x, self.vec1.y),
+            "vec2": (self.vec2.x, self.vec2.y),
+            "vec3": (self.vec3.x, self.vec3.y),
+            "vec4": (self.vec4.x, self.vec4.y)
+        }
+        return DotDict(info)
