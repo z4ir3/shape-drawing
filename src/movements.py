@@ -53,3 +53,26 @@ def rotation(Obj: ClassVar, angle: float) -> ClassVar:
     Obj.vec4 = Vector(Obj.center, Obj.v4)
 
     return Obj
+
+
+def stretch(Obj: ClassVar, sfactor: float) -> ClassVar:
+    """
+    Uniform stretching (homothety):
+    - dilation: |sfactor| > 1
+    - contraction: 0 < |sfactor| < 1
+    """
+    if sfactor < 0:
+        raise ValueError("The stretching scaling factor must be > 0")
+
+
+    # New first vertex and corresponding center-to-vertex vector
+    v1x = Obj.center.x + sfactor * Obj.vec1.x
+    v1y = Obj.center.y + sfactor * Obj.vec1.y
+    Obj.v1 = Point(v1x,v1y)
+    Obj.vec1 = Vector(Obj.center, Obj.v1)
+
+
+
+
+
+
