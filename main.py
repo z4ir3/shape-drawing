@@ -9,7 +9,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 
-from src.movements import rotation
+from src.movements import rotation, stretch
 from src.plots import iplot
 
 from src.input_shapes import input_rectangle
@@ -49,26 +49,49 @@ def main():
         # Sidebar title
         st.sidebar.title("")
 
-
+        # Shape selection
         shape = st.selectbox(
             label = "Select the shape",
             options = ["Rectangle","Circle"],
-            index = 0,
-            placeholder = "",
+            index = None,
+            placeholder = "Shape",
             # key = ""
         )
 
         match shape:
             case "Rectangle":
                 Rect = input_rectangle()
-                if Rect is not None:
-                    st.write(Rect.v1)
-                    st.write(Rect.vec1) #, Rect.vec2, Rect.vec3, Rect.vec4)
+                # if Rect is not None:
 
+            case "Circle":
+                pass
+                # Circ = input_circle()
+                # if Circ is not None:
+                #     st.write(Rect.v1)
+                #     st.write(Rect.vec1)
+            case _:
+                return 0
 
     col1, col2, col3 = st.columns([1,1,1], gap="small")
     with col1:
         st.metric(label = "", value = "Sliding")
+
+        # col1, col2, col3 = st.columns([1,1,1], gap="small")
+        # with col1:
+        #     # x-coordinate of the Rectangle center
+        #     cx = st.number_input(
+        #         label = "Center $x$",
+        #         min_value = None,
+        #         max_value = None,
+        #         value = None,
+        #         step = 0.1,
+        #         format = "%f",
+        #         placeholder = "0",
+        #         help = "x-coordinate of the Rectangle's center"
+        #         # key = None
+        #         # on_change=
+        #     )
+
     with col2:
         st.metric(label = "", value = "Rotation")
         with st.container():
@@ -97,7 +120,7 @@ def main():
         scaling_factor = st.slider(
             label = "Scaling Factor",
             min_value = 0.1,
-            max_value = 5.0,
+            max_value = 3.0,
             value = 1.0,
             step = 0.1,
             format = "%f"
@@ -105,12 +128,12 @@ def main():
             # help = None,
             # on_change = get_T(TType, minvt, maxvt)
         )
-        # try:
-        #     Rect = stretch(Rect, scaling_factor)
-        #     # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
-        #     # st.write(Rect.vec1)
-        # except:
-        #     pass
+        try:
+            Rect = stretch(Rect, scaling_factor)
+            # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+            # st.write(Rect.vec1)
+        except:
+            pass
 
 
     if shape == "Rectangle":
@@ -122,7 +145,7 @@ def main():
             with st.container():
                 col1, col2 = st.columns([1,1], gap="small")
                 with col1:
-                    st.write(f"1st: {info.v1}") #({info['v1x']}, {info['v']}))
+                    st.write(f"1st: {info.v1}")
                 with col2:
                     st.write(f"2nd: {info.v2}")
             with st.container():
@@ -150,12 +173,14 @@ def main():
             with st.container():
                 col1, col2 = st.columns([1,1], gap="small")
                 with col1:
-                    st.write(f"Area: {info.area}")
+                    st.write(f"Center: {info.center}")
                 with col2:
-                    st.write(f"Perimeter: {info.perimeter}")
+                    st.write(f"Area: {info.area}")
             with st.container():
                 col1, col2 = st.columns([1,1], gap="small")
                 with col1:
+                    st.write(f"Perimeter: {info.perimeter}")
+                with col2:
                     st.write(f"Diagonal: {info.diagonal}")
 
 

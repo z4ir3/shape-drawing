@@ -1,6 +1,7 @@
 """
 Copyright (c) leonardo-rocchi:z4ir3
 """
+
 from typing import ClassVar
 from math import pi, sin, cos
 
@@ -46,7 +47,7 @@ def rotation(Obj: ClassVar, angle: float) -> ClassVar:
     Obj.v3 = Point(v3x,v3y)
     Obj.vec3 = Vector(Obj.center, Obj.v3)
 
-    # New fourth vertex and corresponding cetner-to-vertex vector
+    # New fourth vertex and corresponding center-to-vertex vector
     v4x = Obj.center.x + (Obj.vec4.x * cos(theta) - Obj.vec4.y * sin(theta))
     v4y = Obj.center.y + (Obj.vec4.x * sin(theta) + Obj.vec4.y * cos(theta))
     Obj.v4 = Point(v4x,v4y)
@@ -88,8 +89,15 @@ def stretch(Obj: ClassVar, sfactor: float) -> ClassVar:
     Obj.v4 = Point(v4x,v4y)
     Obj.vec4 = Vector(Obj.center, Obj.v4)
 
-    # Stretching a shape also change
+    # Stretching a shape also changes width and height
 
+    # Width is obtained via abs(v1.x - v4.x)
+    Obj.width = abs(Obj.v1.y - Obj.v4.y)
+
+    # Height is obtained via abs(v2.y - v1.y)
+    Obj.height = abs(Obj.v2.y - Obj.v1.y)
+
+    return Obj
 
 
 

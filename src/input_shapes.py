@@ -1,6 +1,7 @@
 """
 Copyright (c) leonardo-rocchi:z4ir3
 """
+
 import streamlit as st
 
 from src.point import Point
