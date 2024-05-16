@@ -1,14 +1,18 @@
 """
 Copyright (c) leonardo-rocchi:z4ir3
 """
+
 from src.utils import DotDict
 from src.point import Point
 from src.vector import Vector
+
 
 class Rectangle:
     """
     Rectangle
     """
+    prc = 1
+
     def __init__(self, center: Point, width: float, height: float):
         self.center = center
         self.width = Rectangle._valid_lh(width)
@@ -53,36 +57,37 @@ class Rectangle:
         """
         Area of the Rectangle
         """
-        return self.width * self.height
+        return round(self.width * self.height, self.prc)
 
     def perimeter(self) -> float:
         """
         Perimeter of the Rectangle
         """
-        return 2 * (self.width + self.height)
+        return round(2 * (self.width + self.height), self.prc)
 
     def diagonal(self) -> float:
         """
         width of the diagonal of the Rectangle
         """
-        return round((self.width**2 + self.height**2)**(0.5), 2)
+        return round((self.width**2 + self.height**2)**(0.5), self.prc)
 
     @property
     def objectinfo(self) -> dict:
         info = {
             "name": "Rectangle",
-            "width": self.width,
-            "height": self.height,
-            "area": self.area(),
-            "perimeter": self.perimeter(),
-            "diagonal": self.diagonal(),
-            "v1": (self.v1.x, self.v1.y),
-            "v2": (self.v2.x, self.v2.y),
-            "v3": (self.v3.x, self.v3.y),
-            "v4": (self.v4.x, self.v4.y),
-            "vec1": (self.vec1.x, self.vec1.y),
-            "vec2": (self.vec2.x, self.vec2.y),
-            "vec3": (self.vec3.x, self.vec3.y),
-            "vec4": (self.vec4.x, self.vec4.y)
+            "center": (round(self.center.x, self.prc), round(self.center.y, self.prc)),
+            "width": round(self.width, self.prc),
+            "height": round(self.height, self.prc),
+            "area": round(self.area(), self.prc),
+            "perimeter": round(self.perimeter(), self.prc),
+            "diagonal": round(self.diagonal(), self.prc),
+            "v1": (round(self.v1.x, self.prc), round(self.v1.y, self.prc)),
+            "v2": (round(self.v2.x, self.prc), round(self.v2.y, self.prc)),
+            "v3": (round(self.v3.x, self.prc), round(self.v3.y, self.prc)),
+            "v4": (round(self.v4.x, self.prc), round(self.v4.y, self.prc)),
+            "vec1": (round(self.vec1.x, self.prc), round(self.vec1.y, self.prc)),
+            "vec2": (round(self.vec2.x, self.prc), round(self.vec2.y, self.prc)),
+            "vec3": (round(self.vec3.x, self.prc), round(self.vec3.y, self.prc)),
+            "vec4": (round(self.vec4.x, self.prc), round(self.vec4.y, self.prc)),
         }
         return DotDict(info)
