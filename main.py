@@ -91,27 +91,14 @@ def main():
             # case _:
             #     return 0
 
-        col1, col2, col3 = st.columns([1,1,1], gap="small")
+
+        col1, col2, col3 = st.columns([2,0.5,4], gap="medium")
+
+
         with col1:
             st.metric(label = "", value = "Sliding")
 
-            # col1, col2, col3 = st.columns([1,1,1], gap="small")
-            # with col1:
-            #     # x-coordinate of the Rectangle center
-            #     cx = st.number_input(
-            #         label = "Center $x$",
-            #         min_value = None,
-            #         max_value = None,
-            #         value = None,
-            #         step = 0.1,
-            #         format = "%f",
-            #         placeholder = "0",
-            #         help = "x-coordinate of the Rectangle's center"
-            #         # key = None
-            #         # on_change=
-            #     )
 
-        with col2:
             st.metric(label = "", value = "Rotation")
             with st.container():
                 # Angle rotation of the Rectangle
@@ -133,7 +120,7 @@ def main():
                 except:
                     pass
 
-        with col3:
+
             st.metric(label = "", value = "Stretching")
             # Stretching scaling factor
             scaling_factor = st.slider(
@@ -153,6 +140,15 @@ def main():
                 # st.write(Rect.vec1)
             except:
                 pass
+
+        with col2:
+            pass
+
+        with col3:
+            # Plot shape
+            iplot(Rect)
+
+
 
 
         if shape == "Rectangle":
@@ -202,8 +198,136 @@ def main():
                     with col2:
                         st.write(f"Diagonal: {info.diagonal}")
 
-        # Plot shape
-        iplot(Rect)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # col1, col2, col3 = st.columns([1,1,1], gap="small")
+        # with col1:
+        #     st.metric(label = "", value = "Sliding")
+
+        #     # col1, col2, col3 = st.columns([1,1,1], gap="small")
+        #     # with col1:
+        #     #     # x-coordinate of the Rectangle center
+        #     #     cx = st.number_input(
+        #     #         label = "Center $x$",
+        #     #         min_value = None,
+        #     #         max_value = None,
+        #     #         value = None,
+        #     #         step = 0.1,
+        #     #         format = "%f",
+        #     #         placeholder = "0",
+        #     #         help = "x-coordinate of the Rectangle's center"
+        #     #         # key = None
+        #     #         # on_change=
+        #     #     )
+
+        # with col2:
+        #     st.metric(label = "", value = "Rotation")
+        #     with st.container():
+        #         # Angle rotation of the Rectangle
+        #         theta_deg = st.slider(
+        #             label = "Angle (degrees)",
+        #             min_value = -360,
+        #             max_value = +360,
+        #             value = 0,
+        #             step = 5,
+        #             format = "%d",
+        #             # keyk = "slider-exp",
+        #             # help = None,
+        #             # on_change = get_T(TType, minvt, maxvt)
+        #         )
+        #         try:
+        #             Rect = rotation(Rect, theta_deg)
+        #             # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+        #             # st.write(Rect.vec1)
+        #         except:
+        #             pass
+
+        # with col3:
+        #     st.metric(label = "", value = "Stretching")
+        #     # Stretching scaling factor
+        #     scaling_factor = st.slider(
+        #         label = "Scaling Factor",
+        #         min_value = 0.1,
+        #         max_value = 3.0,
+        #         value = 1.0,
+        #         step = 0.1,
+        #         format = "%f"
+        #         # keyk = "slider-exp",
+        #         # help = None,
+        #         # on_change = get_T(TType, minvt, maxvt)
+        #     )
+        #     try:
+        #         Rect = stretch(Rect, scaling_factor)
+        #         # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+        #         # st.write(Rect.vec1)
+        #     except:
+        #         pass
+
+
+        # if shape == "Rectangle":
+        #     with st.sidebar:
+        #         # Show Rectangle info
+        #         info = Rect.objectinfo
+
+        #         st.header(f"{info.name}'s vertices")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"1st: {info.v1}")
+        #             with col2:
+        #                 st.write(f"2nd: {info.v2}")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"3rd: {info.v3}")
+        #             with col2:
+        #                 st.write(f"4th: {info.v4}")
+
+        #         st.header(f"{info.name}'s center-to-vertex vectors")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"1st: {info.vec1}")
+        #             with col2:
+        #                 st.write(f"2nd: {info.vec2}")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"3rd: {info.vec3}")
+        #             with col2:
+        #                 st.write(f"4th: {info.vec4}")
+
+        #         st.header(f"{info.name}'s other data")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"Center: {info.center}")
+        #             with col2:
+        #                 st.write(f"Area: {info.area}")
+        #         with st.container():
+        #             col1, col2 = st.columns([1,1], gap="small")
+        #             with col1:
+        #                 st.write(f"Perimeter: {info.perimeter}")
+        #             with col2:
+        #                 st.write(f"Diagonal: {info.diagonal}")
+
+        # # Plot shape
+        # iplot(Rect)
 
     else:
         st.write("")

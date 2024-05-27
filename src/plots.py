@@ -38,8 +38,8 @@ def iplot(Rect: ClassVar) -> None:
 
 def _plotshapes(
     Rect: ClassVar,
-    plotw: int = 700,
-    ploth: int = 700,
+    plotw: int = 800,
+    ploth: int = 800,
     gridcolor: str = "#EEF4F4",
 ):
     """
