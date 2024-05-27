@@ -100,4 +100,35 @@ def stretch(Obj: ClassVar, sfactor: float) -> ClassVar:
     return Obj
 
 
+def sliding(Obj: ClassVar, dx: float, dy: float) -> ClassVar:
+    """
+    Horizontal and Vertical sliding
+    """
+    # New first vertex and corresponding center-to-vertex vector
+    cx = Obj.center.x + dx
+    cy = Obj.center.y + dy
+    Obj.center = Point(cx,cy)
+
+    v1x = Obj.v1.x + dx
+    v1y = Obj.v1.y + dy
+    Obj.v1 = Point(v1x,v1y)
+    Obj.vec1 = Vector(Obj.center, Obj.v1)
+
+    v2x = Obj.v2.x + dx
+    v2y = Obj.v2.y + dy
+    Obj.v2 = Point(v2x,v2y)
+    Obj.vec2 = Vector(Obj.center, Obj.v2)
+
+    v3x = Obj.v3.x + dx
+    v3y = Obj.v3.y + dy
+    Obj.v3 = Point(v3x,v3y)
+    Obj.vec3 = Vector(Obj.center, Obj.v3)
+
+    # New fourth vertex and corresponding center-to-vertex vector
+    v4x = Obj.v4.x + dx
+    v4y = Obj.v4.y + dy
+    Obj.v4 = Point(v4x,v4y)
+    Obj.vec4 = Vector(Obj.center, Obj.v4)
+
+    return Obj
 
