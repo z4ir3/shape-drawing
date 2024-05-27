@@ -9,7 +9,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 
-from src.movements import rotation, stretch
+from src.movements import rotation, stretch, sliding
 from src.plots import iplot
 
 from src.input_shapes import input_rectangle
@@ -96,9 +96,40 @@ def main():
 
 
         with col1:
+            # Sliding
             st.metric(label = "", value = "Sliding")
+            with st.container():
 
+                col1, col2 = st.columns([1,1], gap="small")
+                mm = 6.0
+                step = 0.1
+                with col1:
+                    # Sliding delta_x and delta_y
+                    dx = st.slider(
+                        label = "Delta x",
+                        min_value = -mm,
+                        max_value = mm,
+                        value = 0.0,
+                        step = step,
+                        format = "%f"
+                    )
+                with col2:
+                    dy = st.slider(
+                        label = "Delta y",
+                        min_value = -mm,
+                        max_value = mm,
+                        value = 0.0,
+                        step = step,
+                        format = "%f"
+                    )
+                try:
+                    Rect = sliding(Rect, dx, dy)
+                    # st.write(Rect.v1, Rect.v2, Rect.v3, Rect.v4)
+                    # st.write(Rect.vec1)
+                except:
+                    pass
 
+            # Rotation
             st.metric(label = "", value = "Rotation")
             with st.container():
                 # Angle rotation of the Rectangle
@@ -120,7 +151,7 @@ def main():
                 except:
                     pass
 
-
+            # Stretching
             st.metric(label = "", value = "Stretching")
             # Stretching scaling factor
             scaling_factor = st.slider(
@@ -146,13 +177,17 @@ def main():
 
         with col3:
             # Plot shape
-            iplot(Rect)
+            try:
+                iplot(Rect)
+            except:
+                pass
 
 
 
 
-        if shape == "Rectangle":
+        if (shape == "Rectangle") and (Rect is not None):
             with st.sidebar:
+
                 # Show Rectangle info
                 info = Rect.objectinfo
 
@@ -197,14 +232,6 @@ def main():
                         st.write(f"Perimeter: {info.perimeter}")
                     with col2:
                         st.write(f"Diagonal: {info.diagonal}")
-
-
-
-
-
-
-
-
 
 
 
